@@ -3,11 +3,11 @@ kind: Pod
 metadata:
   name: identity-pod
   labels:
-    name: web
+    name: web-id
 spec:
   containers:
   - name: web-identity
     image: millegalb/identity.test:0.0.1
 
     ports:
-      - containerPort: 80
+    - containerPort: 80

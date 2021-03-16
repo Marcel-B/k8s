@@ -1,0 +1,26 @@
+#deployment spec:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web # hat nichts mit der auswahl von pods zu tun, muss aber mit den labels im podspec übereinstimmen
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web
+  # pod spec:
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      terminationGracePeriodSeconds: 1
+      # container spec:
+      containers:
+      - name: hello-pod
+        image: nigelpoulton/getting-started-k8s:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
