@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ps-pv #der Name des PV
+spec:
+  accessModes:
+  - ReadWriteOnce # Kann nur ein mal von nur einem POD im ReadWrite Mode geclaimt werden
+  #- ReadWriteMany  Das gleiche, kann nur mehrmals verwendet werden (???)
+  #- ReadOnlyMany Kann von vielen pods zum lesen benutzt werden
+  storageClassName: ps-fast
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Retain # Gibt an, was mit dem Volume passiert wenn ein Claim aufgehoben wird
+  hostPath:
+    path: "/Users/marcel/source/repos/K8S/vol"
+  #gcePersistentDisk: # Plugin von Google Cloud (nfs für locale??)
+  #  pdName: ps-vol
